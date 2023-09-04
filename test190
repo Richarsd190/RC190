@@ -1,0 +1,56 @@
+import random
+
+# Define the player's initial stats
+player_health = 100
+player_damage = 20
+
+# Define the enemy's stats
+enemy_health = 50
+enemy_damage = 10
+
+# Define a list of rooms
+rooms = ["Monster Room", "Treasure Room", "Empty Room"]
+
+# Game loop
+while True:
+    # Randomly select a room from the list
+    current_room = random.choice(rooms)
+
+    # Display the current room
+    print("You are in the", current_room)
+
+    # Check the type of room
+    if current_room == "Monster Room":
+        print("A monster has appeared!")
+
+        # Battle loop
+        while player_health > 0 and enemy_health > 0:
+            # Player's attack
+            enemy_health -= player_damage
+            print("You hit the monster! Enemy health:", enemy_health)
+
+            # Enemy's attack
+            player_health -= enemy_damage
+            print("The monster hits you! Your health:", player_health)
+
+        # Check the outcome of the battle
+        if player_health <= 0:
+            print("Game Over! You were defeated by the monster.")
+            break
+        else:
+            print("You defeated the monster and earned some treasure!")
+            print("-----")
+
+    elif current_room == "Treasure Room":
+        print("You found a room full of treasure! Congratulations!")
+        print("-----")
+
+    elif current_room == "Empty Room":
+        print("This room is empty. Keep exploring!")
+        print("-----")
+
+    # Prompt the player to continue or quit
+    choice = input("Continue exploring? (yes/no): ")
+    if choice.lower() == "no":
+        print("Thanks for playing!")
+        break
